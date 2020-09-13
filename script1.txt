@@ -1,0 +1,118 @@
+1. To load server enter / type: mongod
+2. Open a new command prompt window enter / type: mongo - -host local:27017 
+
+Mostly used commands:
+
+1. show databases
+2. use <databasename>
+3. show collections
+4. db.<collectionname>.find() --> normal search command
+5. db.<collectionname>find().pretty() --> to get all the embedded documents
+6. db.<collectionname>.find({query}).pretty() --> conditional search
+
+.........................................................................................
+insertMany()
+
+db.bands.insertMany([
+{
+bandname: "Keetles",
+Event : [
+		{ Event:"Bangalore",
+		Year: 2012,
+		Genre:"Blues"
+		},
+		{
+		Event:"Kolkata",
+		Year:2019,
+		Genre:"Blues"
+		},
+		]
+		},
+		{
+bandname: "Indian Ocean",
+Event :[
+	   { Event : "Kharagpur IIT",
+	   Year:2010,
+	   Genre :"Rock"
+	   },
+	   {
+	   Event:"Kerela",
+	   Year:2012,
+	   Genre:"Rock"
+	   },
+	   ]
+	   }
+	   ])
+	   
+db.albums.insertMany([ 
+    { name: 'Gourav', age: 20}, 
+    { name: 'Kartik', age: 20}, 
+    { name: 'Niharika', age: 20} 
+])
+...........................................................................................
+
+db.musicians.insertMany([
+{
+id : 1,
+name: "Robert Van",
+instrument :"Vocals"
+},
+{
+id : 2,
+name: "Larry Kent",
+instrument :"Drums", born :1988},
+{id : 3,
+name: "Danny Brown",
+instrument :"Bass", born :1990},
+{
+id : 4,
+name: "Barndon Jacobs",
+instrument :"Guitar",born :1985},
+{id : 5,
+name: "Ari Lance",
+instrument :"Keyboards",born:1994},
+{id : 6,
+name: "Jeff Kelly",
+instrument :"Vocals", born:1990},
+{id : 7,
+name: "Marc Thomas",
+instrument :"Drums", born :1987},
+{id : 8,
+name: "Steve Judd",
+instrument :"Bass", born :1984},
+])
+..................................................................................
+db.bookfee.insertMany([
+{type:"festival", startingfee:600},
+{type:"parade", startingfee:500},
+{type:"banquet", startingfee:450},
+{type:"weddings", startingfee:400},
+{type:"parties", startingfee:375},
+{type:"other events", startingfee:300},
+])
+.................................................................................... 	
+
+FIND()
+
+db.musicians.find().pretty() --> returns all the embedded documents in a collection
+db.musicians.find({born:1990}) --> to search for born year 1990
+
+db.bands.find({bandname:"Indian Ocean"}).pretty()
+ 
+...................................................................................
+
+findOne()
+
+Returns one document that natches the search criteria. Incase of multiple documents it returns the first document.
+
+db.musicians.findOne()
+...........................................................................................
+
+Update()
+
+db.musicians.update({id:8},{$set:{name:"Steven Judd"}})
+
+db.musicians.update({id:7},{$set:{instrument :["drums","bass"]}}) --> list
+
+db.musicians.update({id:1},{$set:{year:1991}})
+.................................................................................
