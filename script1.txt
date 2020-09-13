@@ -98,7 +98,9 @@ db.musicians.find().pretty() --> returns all the embedded documents in a collect
 db.musicians.find({born:1990}) --> to search for born year 1990
 
 db.bands.find({bandname:"Indian Ocean"}).pretty()
- 
+
+use booklibrary
+db.bookfee.find({startingfee:{$in:[400,500,600]}})
 ...................................................................................
 
 findOne()
@@ -114,5 +116,21 @@ db.musicians.update({id:8},{$set:{name:"Steven Judd"}})
 
 db.musicians.update({id:7},{$set:{instrument :["drums","bass"]}}) --> list
 
-db.musicians.update({id:1},{$set:{year:1991}})
+db.musicians.update({id:1},{$set:{born:1991}})
 .................................................................................
+
+Drop and Delete
+
+db.musicians.remove({year:1991}) --> particular field
+db.musicians.remove({}) --> deletes all the entries
+db.musicians.drop() --> to delete the collection permanently
+...........................................................................................
+
+deleteOne() and deleteMany()
+
+use booklibrary
+db.bookfee.deleteOne({startingfee:{$in:[400,500,600]}}) --> the first entry gets deleted
+
+db.bookfee.deleteMany({startingfee:{$in:[400,500,600]}}) --> all the remaining gets deleted from the array.
+
+..................................................................................................................
